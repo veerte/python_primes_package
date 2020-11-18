@@ -123,15 +123,11 @@ def pi_meissel(N : int, _prime_sieve : PrimeSieve = None, _prime_list : list[int
 
     return lgsum - p2 + c - 1
 
-pi_cache = {1: 0}
 def pi_generic(N : int, _prime_sieve : PrimeSieve = None, _prime_list : list[int] = None) -> int:
-    if N in pi_cache:
-        return pi_cache[N]
-    
     if _prime_list is not None and N <= _prime_list[-1]:
         return pi_from_list(N, _prime_list)
     else:
-        return pi_meissel(N, _prime_sieve, _prime_list)
+        return pi_lucy_hedgehog(N)
 
 def pi_lucy_hedgehog(N: int) -> int:
     r = math.isqrt(N)
