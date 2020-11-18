@@ -4,8 +4,8 @@ from .primeSieve import PrimeSieve
 
 # very very low quality, needs improvement
 def next_prime_brute(n : int, prime_sieve : PrimeSieve) -> int:
-    if n == 2:
-        return 3
+    if n == 1:
+        return 2
     
     if n % 2 == 0:
         n += 1

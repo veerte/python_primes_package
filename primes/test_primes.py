@@ -141,7 +141,7 @@ class TestPrimeUtils(unittest.TestCase):
         self.assertEqual(list1, list2)
 
     def test_next_prime_brute(self):
-        for n in it.chain(range(1,100), range(100, 10000, 37)):
+        for n in it.chain(range(1,100), range(100, 1000, 37)):
             p = primes.next_prime(n, self.ps)
             self.assertTrue(primes.check_prime(p, self.ps))
             for i in range(n+1, p):
