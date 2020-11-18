@@ -27,12 +27,12 @@ class TestLegendreSum(unittest.TestCase):
 class TestPiComputationMethods(unittest.TestCase):
     def setUp(self) -> None:
         self.N = 10**5
-        self.test_values = zip(range(0, 6), (0, 4, 25, 168, 1229, 9592))
+        self.test_values = ((1,0), (10,4), (100,25), (1000, 168), (10000, 1229), (100000, 9592))
 
     def test_pi_from_list(self):
         ps = primes.PrimeSieve(self.N)
         for n, correct_val in self.test_values:
-            res = PC.pi_from_list(10**n, prime_list=primes.prime_list(prime_sieve=ps, upto=10**n))
+            res = PC.pi_from_list(n, prime_list=primes.prime_list(prime_sieve=ps, upto=n))
             self.assertEqual(res, correct_val)
 
     def test_pi_meissel(self):
@@ -42,8 +42,7 @@ class TestPiComputationMethods(unittest.TestCase):
 
     def test_pi_lucy_hedgehog(self):
         for n, correct_val in self.test_values:
-            res = PC.pi_lucy_hedgehog(n)
-            self.assertEqual(res, correct_val)
+            self.assertEqual(PC.pi_lucy_hedgehog(n), correct_val, msg="failed on input {}".format(n))
 
 if __name__ == "__main__":
     unittest.main()
