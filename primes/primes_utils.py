@@ -62,6 +62,7 @@ def prime_list(prime_sieve : PrimeSieve, *, upto : int = None, n : int = None):
     
     return prime_list
 
+# rolling sieve
 def psieve():
     yield from (2, 3, 5, 7)
     sieve_dict = {}
@@ -86,7 +87,9 @@ def psieve():
             c += step
         sieve_dict[c] = step
 
+
 def nth_prime(n : int, prime_sieve : PrimeSieve) -> int:
+    """Returns the nth prime. SUPER SLOW"""
     if n == 1:
         return 2
     
