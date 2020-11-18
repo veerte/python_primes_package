@@ -3,17 +3,21 @@ import itertools as it
 from .primeSieve import PrimeSieve
 
 # very very low quality, needs improvement
-def next_prime(p : int, prime_sieve : PrimeSieve) -> int:
-    if p == 2:
+def next_prime_brute(n : int, prime_sieve : PrimeSieve) -> int:
+    if n == 2:
         return 3
     
-    if p % 2 == 0:
-        p += 1
+    if n % 2 == 0:
+        n += 1
 
-    while not check_prime(p, prime_sieve):
-        p += 2
+    while not check_prime(n, prime_sieve):
+        n += 2
     
-    return p
+    return n
+
+def next_prime(n: int, prime_sieve: PrimeSieve) -> int:
+    """Returns the smallest prime greater than `from`"""
+    return next_prime_brute(n, prime_sieve)
 
 def check_prime(num : int, prime_sieve : PrimeSieve) -> bool:
     if num > prime_sieve.size:
