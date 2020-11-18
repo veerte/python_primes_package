@@ -1,10 +1,10 @@
 import math
-from typing import Sequence
-from primes.primes_utils import check_prime, prime_list
 import unittest
-import primes
 import functools as ft
 import itertools as it
+from typing import Sequence
+
+import primes
 
 class TestPrimeSieve(unittest.TestCase):
     def setUp(self) -> None:
@@ -67,7 +67,7 @@ class TestPrimeFactoriztions(unittest.TestCase):
         return ft.reduce(lambda acc, x: acc + x[1], factors, 0)
 
     def test_get_prime_factors_correct_sum_of_factor_powers_for_primes(self):
-        for p in prime_list(self.ps, upto=self.TEST_UPTO):
+        for p in primes.prime_list(self.ps, upto=self.TEST_UPTO):
             factors = primes.prime_factors_generator(p, prime_sieve=self.ps)
             self.assertEqual(self.sum_factor_powers(factors), 1, msg="\n for n = {}".format(p))
 
@@ -123,7 +123,7 @@ class TestPrimeUtils(unittest.TestCase):
         self.assertTrue(self.all_prime(self.first_100_primes), msg="check prime must be true for primes")
         for a in range(2,50):
             for b in range(a, 50):
-                self.assertFalse(check_prime(a*b, self.ps), msg="check prime must be false for composite numbers")
+                self.assertFalse(primes.check_prime(a*b, self.ps), msg="check prime must be false for composite numbers")
 
     def test_prime_list(self):
         for n in range(2,1000, 17):

@@ -1,7 +1,7 @@
 import unittest
-import primes
 import math
-from primes.pi_computations import S, S_brute_force
+
+import primes
 
 class TestS(unittest.TestCase):
     def setUp(self) -> None:
@@ -11,7 +11,7 @@ class TestS(unittest.TestCase):
     def test_S_equal_S_brute_force(self):
         pl = primes.prime_list(prime_sieve=self.ps, upto=math.isqrt(self.N))
         for k in range(0,4):
-            self.assertEqual(S(self.N, k, pl), primes.S_brute_force(self.N, k, pl), msg="n={}, k={}".format(self.N, k)) 
+            self.assertEqual(primes.S(self.N, k, pl), primes.S_brute_force(self.N, k, pl), msg="n={}, k={}".format(self.N, k)) 
 
 class TestLegendreSum(unittest.TestCase):
     def setUp(self) -> None:

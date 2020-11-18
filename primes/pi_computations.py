@@ -1,16 +1,18 @@
 from bisect import bisect
 from typing import Sequence
-from .primeSieve import PrimeSieve
-from .primes_utils import prime_list, next_prime 
 import functools as ft
 import itertools as it
-from operator import mul
+import operator
 import typing
 import math
 
+from .primeSieve import PrimeSieve
+from .primes_utils import prime_list, next_prime 
+
 T = typing.TypeVar('T')
+
 def product(nums : Sequence[T]) -> T:
-    return ft.reduce(mul, nums, 1)
+    return ft.reduce(operator.mul, nums, 1)
 
 def S(N : int, k : int, prime_list : list[int]) -> int:
     """Number of positive integers <= N that are divisible by any combination of k primes from the list"""

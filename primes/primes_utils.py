@@ -1,8 +1,6 @@
-from bisect import bisect
-from itertools import count
-import math
-from .primeSieve import PrimeSieve
 import itertools as it
+
+from .primeSieve import PrimeSieve
 
 # very very low quality, needs improvement
 def next_prime(p : int, prime_sieve : PrimeSieve) -> int:
