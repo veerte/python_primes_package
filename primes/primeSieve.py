@@ -5,12 +5,9 @@ class PrimeSieve:
     Allows to check the smallest prime factor of all numbers not exceeding sieve size
     """
     def __init__ (self, size : int, verbose : bool = False):
-        self.size = size
         self.verbose = verbose
-
+        self.size = size
         self.sieve = self.make_sieve(upto=size)
-        self.list = [2,3]
-        self.list_upto = 3
 
     def make_sieve(self, upto : int) -> list:
         """
@@ -27,8 +24,25 @@ class PrimeSieve:
         return sieve 
 
     def smallest_prime_factor(self, x : int) -> int:
-        if x >= len(self.sieve):
-            raise Exception("Number larger than sieve size")
-        a = self.sieve[x]
-        return x if a == 0 else a
+        if x < 0:
+            raise Exception("Negative number was supplied")
+        if x <= 1:
+            return x
+        if x <= self.size:
+            a = self.sieve[x]
+            return x if a == 0 else a
 
+        if x <= self.size**2:
+            for p in range(2, math.isqrt(x)+1):
+                if self.sieve[p]:
+                    continue # skip all composite numbers
+                if x % p == 0:
+                    return p
+            # if nothing was returned by now it means that no prime <=sqrt(x) divides x,
+            # therefore x is prime and is the smallest prime factor of itself
+            return x
+        
+        else:
+            raise Exception("Number greater than sieve size squared")
+
+        

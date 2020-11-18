@@ -1,4 +1,5 @@
 import itertools as it
+import math
 
 from .primeSieve import PrimeSieve
 
@@ -20,15 +21,17 @@ def next_prime(n: int, prime_sieve: PrimeSieve) -> int:
     return next_prime_brute(n, prime_sieve)
 
 def check_prime(num : int, prime_sieve : PrimeSieve) -> bool:
-    if num > prime_sieve.size:
-        raise Exception("Number bigger than the size of sieve, use trial division instead")
-    
     if num < 0:
         raise Exception("Checking primality of number below 0")
-    if num == 1:
+    if num <= 1:
         return False
+    if num <= prime_sieve.size**2:
+        return prime_sieve.smallest_prime_factor(num) == num
+    else:
+        raise Exception("Number larger than sieve size squared, can't check for primality")
+
+
     
-    return prime_sieve.smallest_prime_factor(num) == num
 
 def prime_list(prime_sieve : PrimeSieve, *, upto : int = None, n : int = None):
     """
