@@ -26,7 +26,7 @@ def lucy_Hedgehog_method(N : int) -> int: #by Lucy_Hedgehog, https://projecteule
     div_results = [N//i for i in range(1,r+1)] # precomputed division results by factors <= intSqrt(N)  - O(n^0.5) int divisions
                                                # all of them will be >=isqrt(N), so >= r
 
-    V = list(it.chain(div_results, range(r-1,0,-1)))
+    V = list(it.chain(div_results, range(div_results[-1]-1,0,-1)))
 
     assert V[r-1:] == list(range(r, 0, -1)) #the (r-1)th element is N//r = r by definition of integer square root
     assert all([V[i] > V[i+1] for i in range(0, len(V) - 2)]) # V is strictly decreasing
@@ -79,14 +79,5 @@ def lucy_Hedgehog_method(N : int) -> int: #by Lucy_Hedgehog, https://projecteule
     return S[N]
 
 if __name__ == "__main__":
-    N = 10**7
+    N = 10**3
     print(lucy_Hedgehog_method(N))
-    exit()
-
-    ps = PrimeSieve(N)
-    # time_func(1) (lambda N, ps: 2+sum(filter(ft.partial(check_prime, prime_sieve=ps), range(3, N+1, 2)))) (N, ps)
-    # time_func(1) (lambda N, ps: 2+sum(filter(lambda x: check_prime(x, ps), range(3, N+1, 2)))) (N, ps)
-    # time_func(1) (lambda N, ps: 2+sum([i for i in range(3,N+1,2) if check_prime(i, ps)])) (N, ps)
-    a = time_func(1) (brute) (N, ps)
-    print(a)
-    print(time_func(1) (lucy_Hedgehog_method) (N))

@@ -131,8 +131,8 @@ def pi_generic(N : int, _prime_sieve : PrimeSieve = None, _prime_list : list[int
 
 def pi_lucy_hedgehog(N: int) -> int:
     r = math.isqrt(N)
-    div_results = [N // v for v in range(1, r)]
-    V = div_results + list(range(r, 0, -1))
+    div_results = [N // v for v in range(1, r+1)]
+    V = div_results + list(range(div_results[-1]-1, 0, -1))
     
     T = lambda x: x - 1
     S = {v: T(v) for v in V}
@@ -148,6 +148,12 @@ def pi_lucy_hedgehog(N: int) -> int:
 
 if __name__ == "__main__":
 
-    print(pi_lucy_hedgehog(10**7))
+    ps = PrimeSieve(1000)
+    pl = prime_list(ps, upto=1000)
+    for i in range(1, 1000):
+        a = pi_from_list(i, pl)
+        b = pi_lucy_hedgehog(i)
+        if a != b:
+            print(i, a, b)
     # print(pi_generic(10**5))
 
