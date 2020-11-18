@@ -1,3 +1,8 @@
 *.pyc
 **/__pycache__
 *.ipynb
+dist
+build
+.vscode
+primes_veerte.egg-info
+venv
